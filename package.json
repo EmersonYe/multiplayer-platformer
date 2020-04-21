@@ -1,0 +1,11 @@
+{
+  "name": "beanis",
+  "version": "1.0.0",
+  "description": "A multiplayer platformer game inspired by Ultimate Chicken Horse",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emerson Ye <emersonye@gmail.com>",
+  "license": "ISC"
+}
