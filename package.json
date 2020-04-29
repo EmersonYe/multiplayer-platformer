@@ -2,14 +2,35 @@
   "name": "beanis",
   "version": "1.0.0",
   "description": "A multiplayer platformer game inspired by Ultimate Chicken Horse",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
-    "start": "node src/server/server.js"
+    "build": "webpack --config webpack.prod.js",
+    "lint": "eslint --cache --ext .js,.jsx src/",
+    "develop": "cross-env NODE_ENV=development node src/server/server.js",
+    "start": "cross-env NODE_ENV=production node src/server/server.js"
   },
   "author": "Emerson Ye <emersonye@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "html-webpack-plugin": "^4.2.1",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "webpack": "^4.42.1",
+    "webpack-dev-middleware": "^3.7.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
   }
 }
