@@ -25,7 +25,7 @@ function onKeyDown(event) {
       movement.down = true;
       break;
     default:
-      console.log(`Non-directional key pressed: ${event.keyCode}`);
+      // Ignore non-directional keyboard input.
   }
   sendInput(movement);
 }
@@ -55,7 +55,7 @@ function onKeyUp(event) {
       movement.down = false;
       break;
     default:
-      console.log(`Non-directional key pressed: ${event.keyCode}`);
+      // Ignore non-directional keyboard input.
   }
   sendInput(movement);
 }

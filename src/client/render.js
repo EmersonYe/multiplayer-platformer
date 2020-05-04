@@ -21,7 +21,7 @@ function setCanvasDimensions() {
 window.addEventListener('resize', debounce(40, setCanvasDimensions));
 
 function render() {
-  const { me } = getCurrentState();
+  const { me, others} = getCurrentState();
   if (!me) {
     return;
   }
@@ -36,7 +36,7 @@ function render() {
 
   // Draw all players
   renderPlayer(me, me);
-  // renderPlayer(me, others);
+  others.forEach(renderPlayer.bind(null, me));
 }
 
 function renderBackground(x, y) {

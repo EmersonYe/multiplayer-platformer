@@ -58,6 +58,7 @@ export function getCurrentState() {
     const ratio = (serverTime - baseUpdate.t) / (next.t - baseUpdate.t);
     return {
       me: baseUpdate.me,
+      others: baseUpdate.others,
     };
   }
 }
