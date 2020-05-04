@@ -39,8 +39,6 @@ class Game extends GameClass {
     // Update each player
     Object.keys(this.sockets).forEach(playerID => {
       this.players[playerID].update(dt);
-      // const player = this.players[playerID];
-      // player.update(dt);
     });
 
     // Send a game update to each player every other time

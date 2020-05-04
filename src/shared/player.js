@@ -7,6 +7,7 @@ class Player extends ObjectClass {
     this.username = username;
     this.isAlive = true;
     this.score = 0;
+    this.color = '#'+Math.floor(Math.random()*16777215).toString(16);
     this.input = {
       up: false,
       down: false,
@@ -28,11 +29,9 @@ class Player extends ObjectClass {
     }
     if (this.input.left) {
       this.x -= Constants.PLAYER_MAX_SPEED * dt;
-      console.log('left recievied');
     }
     if (this.input.right) {
       this.x += Constants.PLAYER_MAX_SPEED * dt;
-      console.log('right recievied');
     }
     // Make sure the player stays in bounds
     this.x = Math.max(0, Math.min(Constants.MAP_SIZE, this.x));
@@ -66,6 +65,7 @@ class Player extends ObjectClass {
       username: this.username,
       score: this.score,
       isAlive: this.isAlive,
+      color: this.color,
     };
   }
 }

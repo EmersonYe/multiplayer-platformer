@@ -36,6 +36,7 @@ function render() {
 
   // Draw all players
   renderPlayer(me, me);
+  // renderPlayer(me, others);
 }
 
 function renderBackground(x, y) {
@@ -61,10 +62,10 @@ function renderPlayer(me, player) {
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
 
-  // Draw ship
+  // Draw player
   context.save();
   context.translate(canvasX, canvasY);
-  context.fillStyle = 'white';
+  context.fillStyle = player.color;
   context.fillRect(
     -PLAYER_RADIUS,
     -PLAYER_RADIUS,
