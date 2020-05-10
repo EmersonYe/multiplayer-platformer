@@ -1,8 +1,8 @@
 module.exports = Object.freeze({
   PLAYER_RADIUS: 20,
   PLAYER_GRAVITY: -10,
-  AIR_FRICTION: 0.1,
-  PLAYER_MAX_SPEED: 1000,
+  FRICTION: 0.6,
+  PLAYER_MAX_SPEED: 10,
 
   SCORE_KILL: 20,
   SCORE_WIN: 50,

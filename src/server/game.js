@@ -5,6 +5,7 @@ const Player = require('../shared/player');
 class Game extends GameClass {
   constructor() {
     super();
+    this.platforms = [];
     this.lastUpdateTime = Date.now();
     this.shouldSendUpdate = false;
     setInterval(this.update.bind(this), 1000 / 60);

@@ -19,4 +19,4 @@ class Platform extends ObjectClass {
   }
 }
 
-module.exports = Player;
+module.exports = Platform;
