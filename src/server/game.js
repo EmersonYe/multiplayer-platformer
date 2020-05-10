@@ -6,7 +6,7 @@ const Platform = require('../shared/platform');
 class Game extends GameClass {
   constructor() {
     super();
-    this.platforms = [new Platform(Constants.MAP_SIZE / 2, Constants.MAP_SIZE / 2, 100, 10)];
+    this.platforms = [new Platform(Constants.MAP_SIZE / 2, Constants.MAP_SIZE - 100, 1000, 100)];
     this.lastUpdateTime = Date.now();
     this.shouldSendUpdate = false;
     setInterval(this.update.bind(this), 1000 / 60);
@@ -40,7 +40,7 @@ class Game extends GameClass {
 
     // Update each player
     Object.keys(this.sockets).forEach(playerID => {
-      this.players[playerID].update(dt);
+      this.players[playerID].update(dt, this.platforms);
     });
 
     // Send a game update to each player every other time

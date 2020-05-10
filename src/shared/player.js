@@ -17,16 +17,31 @@ class Player extends ObjectClass {
       right: false,
     };
     // TODO(emersonye): check if on ground.
-    this.isOnGround = true;
+    this.isOnGround = false;
     this.canJump = true;
   }
 
-  update(dt) {
+  update(dt, platforms) {
     super.update(dt);
+
+    // Collisions
+    platforms.forEach(platform => {
+      const footPix = this.y + Constants.PLAYER_RADIUS;
+      if (footPix >= platform.y - (platform.height / 2) &&
+          footPix <= platform.y + (platform.height / 2) &&
+          this.x + Constants.PLAYER_RADIUS >= (platform.x - platform.width / 2) &&
+          this.x - Constants.PLAYER_RADIUS <= (platform.x + platform.width / 2)) {
+        this.y = platform.y - platform.height / 2 - Constants.PLAYER_RADIUS;
+        this.dy = 0;
+        this.isOnGround = true;
+      } else {
+        this.isOnGround = false;
+      }
+    });
 
     // Jump
     if (this.input.up && this.isOnGround && this.canJump) {
-      this.dy -= 100;
+      this.dy -= 3;
       this.canJump = false;
     }
     if (this.input.down) {
@@ -43,11 +58,11 @@ class Player extends ObjectClass {
 
     // Gravity & friction.
     if (this.isOnGround) {
-      this.dx *= Constants.FRICTION;
-      this.dy = 0;
+      this.canJump = true;
     } else {
-      this.dy += 10;
+      this.dy += Constants.PLAYER_GRAVITY * dt;
     }
+    this.dx *= Constants.FRICTION;
     this.x += this.dx;
     this.y += this.dy;
 
