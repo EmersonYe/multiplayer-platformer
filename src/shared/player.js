@@ -21,7 +21,7 @@ class Player extends ObjectClass {
   update(dt) {
     super.update(dt);
 
-    if (this.input.up && this.canJump) {
+    if (this.input.up && this.isOnGround) {
       this.jump();
     }
     if (this.input.down) {
