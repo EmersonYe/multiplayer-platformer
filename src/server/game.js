@@ -1,11 +1,12 @@
 const Constants = require('../shared/constants');
 const GameClass = require('../shared/game');
 const Player = require('../shared/player');
+const Platform = require('../shared/platform');
 
 class Game extends GameClass {
   constructor() {
     super();
-    this.platforms = [];
+    this.platforms = [new Platform(Constants.MAP_SIZE / 2, Constants.MAP_SIZE / 2, 100, 10)];
     this.lastUpdateTime = Date.now();
     this.shouldSendUpdate = false;
     setInterval(this.update.bind(this), 1000 / 60);
@@ -61,6 +62,7 @@ class Game extends GameClass {
       t: Date.now(),
       me: player.serializeForUpdate(),
       others: otherPlayers.map(p => p.serializeForUpdate()),
+      platforms: this.platforms.map(p => p.serializeForUpdate()),
     };
   }
 }

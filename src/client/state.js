@@ -59,6 +59,7 @@ export function getCurrentState() {
     return {
       me: baseUpdate.me,
       others: baseUpdate.others,
+      platforms: baseUpdate.platforms,
     };
   }
 }

@@ -1,12 +1,13 @@
+const shortid = require('shortid');
 const ObjectClass = require('./object');
 const Constants = require('./constants');
 
 class Platform extends ObjectClass {
-  constructor(id, x, y, width, height, owner) {
-    super(id, x, y);
+  constructor(x, y, width, height) {
+    super(shortid(), x, y);
     this.width = width;
     this.height = height;
-    this.owner = owner;
+    this.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   }
 
   serializeForUpdate() {
@@ -14,7 +15,7 @@ class Platform extends ObjectClass {
       ...(super.serializeForUpdate()),
       width: this.width,
       height: this.height,
-      owner: this.owner,
+      color: this.color,
     };
   }
 }

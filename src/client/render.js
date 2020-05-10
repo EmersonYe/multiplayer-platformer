@@ -21,7 +21,7 @@ function setCanvasDimensions() {
 window.addEventListener('resize', debounce(40, setCanvasDimensions));
 
 function render() {
-  const { me, others } = getCurrentState();
+  const { me, others, platforms } = getCurrentState();
   if (!me) {
     return;
   }
@@ -33,6 +33,9 @@ function render() {
   context.strokeStyle = 'black';
   context.lineWidth = 1;
   context.strokeRect(canvas.width / 2 - me.x, canvas.height / 2 - me.y, MAP_SIZE, MAP_SIZE);
+
+  // Draw platforms
+  platforms.forEach(renderPlatform.bind(null, me));
 
   // Draw all players
   renderPlayer(me, me);
@@ -54,6 +57,26 @@ function renderBackground(x, y) {
   backgroundGradient.addColorStop(1, 'gray');
   context.fillStyle = backgroundGradient;
   context.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+// Renders a platform at the given coordinates
+function renderPlatform(me, platform) {
+  const { x, y } = platform;
+  const canvasX = canvas.width / 2 + x - me.x;
+  const canvasY = canvas.height / 2 + y - me.y;
+
+  // Draw platform
+  context.save();
+  context.translate(canvasX, canvasY);
+  // TODO(emersonye): use platform owner's color.
+  context.fillStyle = platform.color;
+  context.fillRect(
+    -platform.width / 2,
+    -platform.height / 2,
+    platform.width,
+    platform.height,
+  );
+  context.restore();
 }
 
 // Renders a player at the given coordinates
